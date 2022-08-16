@@ -13,6 +13,14 @@ function cargarAddeventListeners() {
 carrito.addEventListener('click',eliminarCurso);
 }
 
+//Muestra los cursos del Local Storage
+
+document.addEventListener('DOMContentLoaded',()=>{
+     articulosCarrito = JSON.parse(localStorage.getItem('carrito')) || [] ;
+
+     crearHTML();
+})
+
 vaciarcarritoBtn.addEventListener('click',()=>{
      articulosCarrito =[]; //REseteamos el arreglo
 
@@ -106,6 +114,14 @@ function crearHTML() {
 
     listacarrito.appendChild(row);
   });
+
+  //Agregar el carrito de compras al Storage
+
+  sincronizarStorage();
+
+  function sincronizarStorage(){
+     localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
+  }
 }
 
 //Eliminar los cursos de TB asi no se duplican
